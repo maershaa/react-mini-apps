@@ -93,7 +93,7 @@ git branch -M main
 1. Добавляем remote:
 
 ```bash
-git remote add origin https://github.com/USERNAME/название проекта.git
+git remote add origin https://github.com/maershaa/react-mini-apps.git
 ```
 
 2. Пушим ветку main:
@@ -116,7 +116,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-  base: '/Practice-Promises-Date-flatpickr-notiflix/',
+  base: '/react-mini-apps/',
 
   plugins: [react()], // реакт сам его добавил
 
