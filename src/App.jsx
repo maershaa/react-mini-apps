@@ -12,7 +12,7 @@ import { Notification } from '@/components/Notification/Notification';
 import { ContactForm } from '@/components/ContactForm/ContactForm';
 import { Filter } from '@/components/Filter/Filter';
 import { ContactList } from '@/components/ContactList/ContactList';
-
+import { PhonebookArticle } from '@/components/PhonebookArticle/PhonebookArticle';
 import {
   countTotalFeedback,
   countPositiveFeedbackPercentage,
@@ -75,13 +75,17 @@ class App extends Component {
           </Section>
 
           <Section title="Phonebook-section" id="phonebook">
-            <div className="section-content">
-              <h3>Phonebook</h3>
-              <ContactForm />
+            <div className="phonebook-layout">
+              <PhonebookArticle subtitle={'Phonebook'}>
+                <ContactForm />
+              </PhonebookArticle>
 
-              <h3>Contacts</h3>
-              <Filter />
-              <ContactList />
+              <PhonebookArticle subtitle={'Contacts'}>
+                {/* { true ? <Filter /> <ContactList /> : <Notification message="There is no contacts yet" />} */}
+
+                <Filter />
+                <ContactList />
+              </PhonebookArticle>
             </div>
           </Section>
         </main>

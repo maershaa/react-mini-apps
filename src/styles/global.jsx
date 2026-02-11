@@ -1,6 +1,7 @@
 import { Global, css, useTheme } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 import bgImg from '@/assets/background.png';
+import flags from 'intl-tel-input/build/img/flags.png';
 
 /**
  * 1. Выносим все глобальные стили в функцию,
@@ -17,6 +18,15 @@ const globalStyles = theme => css`
   *::after {
     box-sizing: border-box;
   }
+
+  /* ===== Стили для intl-tel-input (для ввода телефона с кодами стран и флагами стран) ===== */
+  .iti__flag {
+    background-image: url(${flags});
+  }
+  .iti__search-icon svg {
+    position: initial !important;
+  }
+  /* ========== */
 
   body {
     margin: 0;
@@ -78,32 +88,13 @@ const globalStyles = theme => css`
     gap: 20px;
   }
 
-  /* ---------------- FEEDBACK ---------------- */
+  /* ---------------- phonebook ---------------- */
 
-  form {
-    max-width: 400px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  input {
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-  }
-
-  input:focus {
-    outline: none;
-    border-color: #6a5cff;
-  }
-
-  input[type='submit'] {
-    background: linear-gradient(135deg, #6be585, #36d1dc);
-    font-weight: 600;
-    border: none;
+  .phonebook-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 32px;
   }
 `;
 
