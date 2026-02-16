@@ -1,7 +1,6 @@
 import { Global, css, useTheme } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 import bgImg from '@/assets/background.png';
-import flags from 'intl-tel-input/build/img/flags.png';
 
 /**
  * 1. Выносим все глобальные стили в функцию,
