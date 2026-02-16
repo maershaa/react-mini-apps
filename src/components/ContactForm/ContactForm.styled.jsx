@@ -21,6 +21,11 @@ const Form = styled.form`
     pointer-events: none;
   }
 
+  /* Находим родителя .input-wrapper, внутри которого есть инпут с именем phoneInput */
+  .input-wrapper:has(input[name='phoneNumber']) svg {
+    position: static;
+  }
+
   input {
     width: 100%;
     padding: 10px 12px 10px 38px; /* отступ слева под иконку */
@@ -29,15 +34,42 @@ const Form = styled.form`
     border: 1px solid ${({ theme }) => theme.colors.border.light};
   }
 
+  input[name='phoneNumber'] {
+    padding-left: 10px; /* уменьшаем отступ слева */
+  }
+
   input:focus {
     outline: none;
     border-color: #6a5cff;
   }
 
-  input[type='submit'] {
-    background: linear-gradient(135deg, #6be585, #36d1dc);
+  button {
     font-weight: 600;
     border: none;
+
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: white;
+    opacity: 1;
+    background: linear-gradient(135deg, #6be585, #36d1dc);
+  }
+
+  button:disabled {
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .input-wrapper.valid input {
+    border-color: green;
+  }
+
+  .input-wrapper.invalid input {
+    border-color: red;
   }
 `;
 
@@ -71,12 +103,12 @@ const RadioOption = styled.label`
   }
 
   input[type='radio']:checked {
-    background-color: #6a5cff;
-    border-color: #6a5cff;
+    background-color: ${({ theme }) => theme.colors.border.light};
+    border-color: ${({ theme }) => theme.colors.border.light};
   }
 
   &:hover input[type='radio'] {
-    border-color: #6a5cff;
+    border-color: ${({ theme }) => theme.colors.border.light};
   }
 `;
 

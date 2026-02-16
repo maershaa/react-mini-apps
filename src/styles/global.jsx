@@ -19,15 +19,6 @@ const globalStyles = theme => css`
     box-sizing: border-box;
   }
 
-  /* ===== Стили для intl-tel-input (для ввода телефона с кодами стран и флагами стран) ===== */
-  .iti__flag {
-    background-image: url(${flags});
-  }
-  .iti__search-icon svg {
-    position: initial !important;
-  }
-  /* ========== */
-
   body {
     margin: 0;
     font-family: ${theme.fonts.main};
