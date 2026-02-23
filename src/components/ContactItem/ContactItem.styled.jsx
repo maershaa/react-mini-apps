@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 const ContactCard = styled.li`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 20px;
-  justify-content: space-evenly;
+  justify-items: center;
   align-items: center;
 `;
 

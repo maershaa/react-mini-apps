@@ -78,8 +78,10 @@ class ContactForm extends Component {
       phoneNumber,
       gender,
     };
+    console.log('🚀 ~ ContactForm ~ this.props 1:', this.props);
 
     this.props.addContact(contactInfo);
+    console.log('🚀 ~ ContactForm ~ this.props 2:', this.props);
     this.resetForm();
   };
 
@@ -143,7 +145,6 @@ class ContactForm extends Component {
             defaultCountry="UA"
             international //Включает международный формат номера, добавляет выбор страны и отображает +ко
             autoComplete="tel"
-            maxLength="18"
           />
         </div>
 
