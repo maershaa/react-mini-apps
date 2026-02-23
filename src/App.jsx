@@ -23,8 +23,34 @@ class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    contacts: [],
-    name: '',
+    contacts: [
+      {
+        id: 'id-1',
+        name: 'Rosie ',
+        surname: 'Simpson',
+        phoneNumber: '459-12-56',
+      },
+      // {
+      //   id: 'id-2',
+      //   name: 'Hermione ',
+      //   surname: 'Kline',
+      //   phoneNumber: '443-89-12',
+      // },
+      // {
+      //   id: 'id-3',
+      //   name: 'Eden ',
+      //   surname: 'Clements',
+      //   phoneNumber: '645-17-79',
+      // },
+      // {
+      //   id: 'id-4',
+      //   name: 'Annie ',
+      //   surname: 'Copeland',
+      //   phoneNumber: '227-91-26',
+      // },
+    ],
+    filter: '',
+    // name: '',
   };
 
   leaveFeedback = evt => {
@@ -40,8 +66,13 @@ class App extends Component {
     }
   };
 
+  addContactToPhonebook = contactInfo =>
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, contactInfo],
+    }));
+
   render() {
-    const { good, neutral, bad } = this.state;
+    const { good, neutral, bad, contacts } = this.state;
     const totalFeedback = countTotalFeedback(good, neutral, bad);
     const PositiveFeedbackPercentage = countPositiveFeedbackPercentage(
       good,
@@ -79,14 +110,17 @@ class App extends Component {
           <Section title="Phonebook-section" id="phonebook">
             <div className="phonebook-layout">
               <PhonebookArticle subtitle={'Phonebook'}>
-                <ContactForm />
+                <ContactForm
+                  addContact={this.addContactToPhonebook}
+                  contacts={contacts}
+                />
               </PhonebookArticle>
 
               <PhonebookArticle subtitle={'Contacts'}>
                 {/* { true ? <Filter /> <ContactList /> : <Notification message="There is no contacts yet" />} */}
 
-                <Filter />
-                <ContactList />
+                {/* <Filter /> */}
+                <ContactList contacts={contacts} />
               </PhonebookArticle>
             </div>
           </Section>

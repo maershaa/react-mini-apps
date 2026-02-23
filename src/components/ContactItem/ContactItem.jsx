@@ -1,30 +1,44 @@
 import PropTypes from 'prop-types';
+import { GrFavorite } from 'react-icons/gr';
+import { MdDelete } from 'react-icons/md';
 
-const ContactItem = () =>
-  // { name, surname, tel, gender }
-  {
-    return (
-      <li>
-        <div className="contact-info">
-          <span className="contact-avatar" aria-hidden="true">
-            <svg className="contact-icon" />
-          </span>
+import { boy, girl, unknown_gender } from '@/assets/avatar/avatar';
+import {
+  ContactCard,
+  AvatarImg,
+  ContactDetails,
+  ContactActions,
+} from '@/components/ContactItem/ContactItem.styled';
 
-          <div className="contact-text">
-            <p className="contact-name">{/* {name} {surname} */}</p>
+const ContactItem = ({ name, surname, phoneNumber, gender }) => {
+  const imgSrc =
+    gender === 'male' ? boy : gender === 'female' ? girl : unknown_gender;
+  return (
+    <ContactCard>
+      <AvatarImg src={imgSrc} alt="avatar image"></AvatarImg>
 
-            <a
-              className="contact-phone"
-              // href={`tel:${tel}`}
-              // aria-label={`Call ${name} ${surname}`}
-            >
-              {/* {tel} */}
-            </a>
-          </div>
-        </div>
-      </li>
-    );
-  };
+      <ContactDetails>
+        <p>
+          {name} {surname}
+        </p>
+
+        <a href={`tel:${phoneNumber}`} aria-label={`Call ${name} ${surname}`}>
+          {phoneNumber}
+        </a>
+      </ContactDetails>
+
+      <ContactActions>
+        <button className="btn-favorite" aria-label="Add to favorites">
+          <GrFavorite />
+        </button>
+
+        <button className="btn-delete" aria-label="Delete contact">
+          <MdDelete />
+        </button>
+      </ContactActions>
+    </ContactCard>
+  );
+};
 
 ContactItem.propTypes = {};
 export { ContactItem };

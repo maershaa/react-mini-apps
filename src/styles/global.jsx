@@ -59,6 +59,22 @@ const globalStyles = theme => css`
     cursor: pointer;
   }
 
+  button {
+    border: none;
+    outline: none;
+    padding: 0;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  button:active {
+    opacity: 0.7;
+  }
+
   main {
     width: 100%;
     max-width: 1200px;

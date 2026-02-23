@@ -23,8 +23,6 @@ class ContactForm extends Component {
   };
 
   state = {
-    contacts: [],
-    filter: '',
     ...this.initialState,
   };
 
@@ -53,8 +51,7 @@ class ContactForm extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
 
-    const { contacts, name, surname, phoneNumber, gender, phoneValid } =
-      this.state;
+    const { name, surname, phoneNumber, gender, phoneValid } = this.state;
 
     if (!phoneValid) {
       alert('Invalid phone');
@@ -66,6 +63,14 @@ class ContactForm extends Component {
       return;
     }
 
+    const exists = this.props.contacts?.some(
+      c => c.phoneNumber === phoneNumber
+    );
+    if (exists) {
+      alert('Contact already exists');
+      return;
+    }
+
     const contactInfo = {
       id: crypto.randomUUID(),
       name: name.trim(),
@@ -74,10 +79,7 @@ class ContactForm extends Component {
       gender,
     };
 
-    this.setState({
-      contacts: [...contacts, contactInfo],
-    });
-
+    this.props.addContact(contactInfo);
     this.resetForm();
   };
 
@@ -88,10 +90,6 @@ class ContactForm extends Component {
   };
 
   render() {
-    // console.log(
-    //   '🚀 ~ ContactForm ~ render ~ this.state.contacts:',
-    //   this.state.contacts
-    // );
     const { name, surname, phoneNumber, gender, phoneValid, phoneTouched } =
       this.state;
 
