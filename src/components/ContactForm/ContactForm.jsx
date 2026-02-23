@@ -12,20 +12,21 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import { isPossiblePhoneNumber } from 'react-phone-number-input';
 
-const initialState = {
-  name: '',
-  surname: '',
-  phoneNumber: '',
-  gender: '',
-  phoneValid: false,
-  phoneTouched: false, //коснулся ли пользователь поля телефона. Нужно, чтобы показывать ошибки или красную рамку только после того, как пользователь начал ввод.
-};
 class ContactForm extends Component {
-  constructor(props) {
-    super(props);
+  initialState = {
+    name: '',
+    surname: '',
+    phoneNumber: '',
+    gender: '',
+    phoneValid: false,
+    phoneTouched: false, //коснулся ли пользователь поля телефона. Нужно, чтобы показывать ошибки или красную рамку только после того, как пользователь начал ввод.
+  };
 
-    this.state = initialState;
-  }
+  state = {
+    contacts: [],
+    filter: '',
+    ...this.initialState,
+  };
 
   handleFormChange = e => {
     //это универсальная функция может обновлять любое поле формы, не нужно писать отдельный обработчик для каждого <input>
@@ -52,15 +53,16 @@ class ContactForm extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
 
-    const { name, surname, phoneNumber, gender, phoneValid } = this.state;
+    const { contacts, name, surname, phoneNumber, gender, phoneValid } =
+      this.state;
 
     if (!phoneValid) {
-      console.error('Invalid phone');
+      alert('Invalid phone');
       return;
     }
 
     if (!name || !surname || !phoneNumber || !gender) {
-      console.error('Fill all fields');
+      alert('Fill all fields');
       return;
     }
 
@@ -72,16 +74,24 @@ class ContactForm extends Component {
       gender,
     };
 
-    console.log(contactInfo);
+    this.setState({
+      contacts: [...contacts, contactInfo],
+    });
 
     this.resetForm();
   };
 
   resetForm = () => {
-    this.setState(initialState);
+    this.setState({
+      ...this.initialState,
+    });
   };
 
   render() {
+    // console.log(
+    //   '🚀 ~ ContactForm ~ render ~ this.state.contacts:',
+    //   this.state.contacts
+    // );
     const { name, surname, phoneNumber, gender, phoneValid, phoneTouched } =
       this.state;
 
@@ -100,8 +110,10 @@ class ContactForm extends Component {
             type="text"
             name="name"
             value={name}
+            //pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$" // разрешает только буквы (рус/англ), пробел, дефис и апостроф. Нельзя вводить: цифры и специальные символы (@, #, $ и т.д.)
             placeholder="Name"
-            minLength="3"
+            // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob, Charles"
+            required
             onChange={this.handleFormChange}
             autoComplete="given-name" //Подсказывает браузеру, что это имя пользователя, чтобы он мог подставлять сохранённые данные
           />
@@ -113,8 +125,10 @@ class ContactForm extends Component {
             type="text"
             name="surname"
             value={surname}
+            //pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$" // разрешает только буквы (рус/англ), пробел, дефис и апостроф. Нельзя вводить: цифры и специальные символы (@, #, $ и т.д.)
             placeholder="Surname"
-            minLength="3"
+            // title="Surname may contain only letters, apostrophe, dash and spaces. For example Mercer, Williams"
+            required
             onChange={this.handleFormChange}
             autoComplete="family-name" //Подсказывает браузеру, что это фамилия пользователя, чтобы он мог подставлять сохранённые данные
           />
