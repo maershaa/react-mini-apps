@@ -63,14 +63,6 @@ class ContactForm extends Component {
       return;
     }
 
-    const exists = this.props.contacts?.some(
-      c => c.phoneNumber === phoneNumber
-    );
-    if (exists) {
-      alert('Contact already exists');
-      return;
-    }
-
     const contactInfo = {
       id: crypto.randomUUID(),
       name: name.trim(),
@@ -78,10 +70,8 @@ class ContactForm extends Component {
       phoneNumber,
       gender,
     };
-    console.log('🚀 ~ ContactForm ~ this.props 1:', this.props);
 
     this.props.addContact(contactInfo);
-    console.log('🚀 ~ ContactForm ~ this.props 2:', this.props);
     this.resetForm();
   };
 

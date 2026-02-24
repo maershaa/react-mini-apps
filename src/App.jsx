@@ -24,36 +24,36 @@ class App extends Component {
     neutral: 0,
     bad: 0,
     contacts: [
-      // {
-      //   id: 'id-1',
-      //   name: 'Rosie ',
-      //   surname: 'Simpson',
-      //   gender: 'female',
-      //   phoneNumber: '459-12-56',
-      // },
-      // {
-      //   id: 'id-2',
-      //   name: 'Hermione ',
-      //   surname: 'Kline',
-      //   gender: 'female',
-      //   phoneNumber: '443-89-12',
-      // },
-      // {
-      //   id: 'id-3',
-      //   name: 'Eden ',
-      //   gender: 'male',
-      //   surname: 'Clements',
-      //   phoneNumber: '645-17-79',
-      // },
-      // {
-      //   id: 'id-4',
-      //   name: 'Annie ',
-      //   surname: 'Copeland',
-      //   phoneNumber: '227-91-26',
-      // },
+      {
+        id: 'id-1',
+        name: 'Rosie ',
+        surname: 'Simpson',
+        gender: 'female',
+        phoneNumber: '459-12-56',
+      },
+      {
+        id: 'id-2',
+        name: 'Hermione ',
+        surname: 'Kline',
+        gender: 'female',
+        phoneNumber: '443-89-12',
+      },
+      {
+        id: 'id-3',
+        name: 'Eden ',
+        gender: 'male',
+        surname: 'Clements',
+        phoneNumber: '645-17-79',
+      },
+      {
+        id: 'id-4',
+        name: 'Annie ',
+        surname: 'Copeland',
+        phoneNumber: '227-91-26',
+      },
     ],
     filter: '',
-    // name: '',
+    favorites: [],
   };
 
   leaveFeedback = evt => {
@@ -69,14 +69,23 @@ class App extends Component {
     }
   };
 
-  addContactToPhonebook = contactInfo =>
+  addContactToPhonebook = contactInfo => {
+    const isDuplicate = this.state.contacts.some(
+      c => c.phoneNumber.trim() === contactInfo.phoneNumber.trim()
+    );
+
+    if (isDuplicate) {
+      alert('Contact already exists');
+      return;
+    }
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contactInfo],
     }));
+  };
 
   changeFilter = evt => {
     const currentValue = evt.currentTarget.value;
-    console.log('🚀 ~ Filter ~ currentValue:', currentValue);
     this.setState({ filter: currentValue });
   };
 
@@ -86,15 +95,37 @@ class App extends Component {
 
     return contacts.filter(c => {
       if (c.name.toLowerCase().trim().includes(normalizedFilter)) return c;
-
       if (c.surname.toLowerCase().trim().includes(normalizedFilter)) return c;
-
       if (c.phoneNumber.trim().includes(normalizedFilter)) return c;
     });
   };
 
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(el => el.id !== id),
+    }));
+  };
+
+  toggleFavourite = id => {
+    this.setState(prevState => {
+      const isFavourite = prevState.favorites.some(el => el.id === id);
+      if (isFavourite)
+        // удалить из favorites
+        return {
+          favorites: prevState.favorites.filter(el => el.id !== id),
+        };
+      else {
+        // добавить в favorites
+        const newFavoriteContact = prevState.contacts.find(el => el.id === id);
+        return {
+          favorites: [...prevState.favorites, newFavoriteContact],
+        };
+      }
+    });
+  };
+
   render() {
-    const { good, neutral, bad, contacts, filter } = this.state;
+    const { good, neutral, bad, contacts, filter, favorites } = this.state;
 
     const totalFeedback = countTotalFeedback(good, neutral, bad);
 
@@ -150,7 +181,12 @@ class App extends Component {
                 ) : (
                   <>
                     <Filter value={filter} onChange={this.changeFilter} />{' '}
-                    <ContactList contacts={visibleContacts} />
+                    <ContactList
+                      contacts={visibleContacts}
+                      favorites={favorites}
+                      deleteContact={this.deleteContact}
+                      toggleFavourite={this.toggleFavourite}
+                    />
                   </>
                 )}
               </PhonebookArticle>

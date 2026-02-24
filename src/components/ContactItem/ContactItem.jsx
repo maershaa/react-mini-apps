@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
-import { GrFavorite } from 'react-icons/gr';
-import { MdDelete } from 'react-icons/md';
+import {
+  MdOutlineFavorite,
+  MdOutlineFavoriteBorder,
+  MdDelete,
+} from 'react-icons/md';
 
 import { boy, girl, unknown_gender } from '@/assets/avatar/avatar';
 import {
@@ -10,11 +13,20 @@ import {
   ContactActions,
 } from '@/components/ContactItem/ContactItem.styled';
 
-const ContactItem = ({ name, surname, phoneNumber, gender }) => {
+const ContactItem = ({
+  id,
+  name,
+  surname,
+  phoneNumber,
+  gender,
+  deleteContact,
+  toggleFavourite,
+  isFavourite,
+}) => {
   const imgSrc =
     gender === 'male' ? boy : gender === 'female' ? girl : unknown_gender;
   return (
-    <ContactCard>
+    <ContactCard key={id}>
       <AvatarImg src={imgSrc} alt="avatar image"></AvatarImg>
 
       <ContactDetails>
@@ -28,11 +40,19 @@ const ContactItem = ({ name, surname, phoneNumber, gender }) => {
       </ContactDetails>
 
       <ContactActions>
-        <button className="btn-favorite" aria-label="Add to favorites">
-          <GrFavorite />
+        <button
+          className="btn-favorite"
+          aria-label="Add to favorites"
+          onClick={() => toggleFavourite(id)}
+        >
+          {isFavourite ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />}
         </button>
 
-        <button className="btn-delete" aria-label="Delete contact">
+        <button
+          className="btn-delete"
+          aria-label="Delete contact"
+          onClick={() => deleteContact(id)}
+        >
           <MdDelete />
         </button>
       </ContactActions>

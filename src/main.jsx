@@ -14,8 +14,3 @@ createRoot(document.getElementById('root')).render(
     </ThemeProvider>
   </StrictMode>
 );
-
-// const Card = styled.div`
-// background-color: ${({ theme }) => theme.colors.background.gray};
-// color: ${({ theme }) => theme.colors.text.primary};
-// `;
