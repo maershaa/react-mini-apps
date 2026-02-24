@@ -11,7 +11,6 @@ class Filter extends Component {
         <FilterInput
           name="filter"
           onChange={onChange}
-          minLength={3}
           placeholder="Search by name or number"
           type="search"
           value={value}

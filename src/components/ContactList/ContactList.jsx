@@ -15,6 +15,7 @@ const ContactList = ({
 
         return (
           <ContactItem
+            key={id}
             id={id}
             name={name}
             surname={surname}

@@ -26,7 +26,7 @@ const ContactItem = ({
   const imgSrc =
     gender === 'male' ? boy : gender === 'female' ? girl : unknown_gender;
   return (
-    <ContactCard key={id}>
+    <ContactCard>
       <AvatarImg src={imgSrc} alt="avatar image"></AvatarImg>
 
       <ContactDetails>

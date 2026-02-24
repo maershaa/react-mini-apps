@@ -93,11 +93,17 @@ class App extends Component {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase().trim();
 
-    return contacts.filter(c => {
-      if (c.name.toLowerCase().trim().includes(normalizedFilter)) return c;
-      if (c.surname.toLowerCase().trim().includes(normalizedFilter)) return c;
-      if (c.phoneNumber.trim().includes(normalizedFilter)) return c;
-    });
+    // Если меньше 3 символов, возвращаем все контакты, но стоит ли?
+    // if (normalizedFilter.length < 3) {
+    //   return contacts;
+    // }
+
+    return contacts.filter(
+      c =>
+        c.name.toLowerCase().includes(normalizedFilter) ||
+        c.surname.toLowerCase().includes(normalizedFilter) ||
+        c.phoneNumber.includes(normalizedFilter)
+    );
   };
 
   deleteContact = id => {
