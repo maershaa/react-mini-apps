@@ -39,11 +39,11 @@ const ContactActions = styled.div`
 
   button {
     cursor: pointer;
-    width: 32px;
   }
 
   button svg {
     width: 32px;
+    height: 32px;
   }
 
   button:hover {

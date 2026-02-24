@@ -24,21 +24,24 @@ class App extends Component {
     neutral: 0,
     bad: 0,
     contacts: [
-      {
-        id: 'id-1',
-        name: 'Rosie ',
-        surname: 'Simpson',
-        phoneNumber: '459-12-56',
-      },
+      // {
+      //   id: 'id-1',
+      //   name: 'Rosie ',
+      //   surname: 'Simpson',
+      //   gender: 'female',
+      //   phoneNumber: '459-12-56',
+      // },
       // {
       //   id: 'id-2',
       //   name: 'Hermione ',
       //   surname: 'Kline',
+      //   gender: 'female',
       //   phoneNumber: '443-89-12',
       // },
       // {
       //   id: 'id-3',
       //   name: 'Eden ',
+      //   gender: 'male',
       //   surname: 'Clements',
       //   phoneNumber: '645-17-79',
       // },
@@ -71,15 +74,40 @@ class App extends Component {
       contacts: [...prevState.contacts, contactInfo],
     }));
 
+  changeFilter = evt => {
+    const currentValue = evt.currentTarget.value;
+    console.log('🚀 ~ Filter ~ currentValue:', currentValue);
+    this.setState({ filter: currentValue });
+  };
+
+  getFilteredContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase().trim();
+
+    return contacts.filter(c => {
+      if (c.name.toLowerCase().trim().includes(normalizedFilter)) return c;
+
+      if (c.surname.toLowerCase().trim().includes(normalizedFilter)) return c;
+
+      if (c.phoneNumber.trim().includes(normalizedFilter)) return c;
+    });
+  };
+
   render() {
-    const { good, neutral, bad, contacts } = this.state;
+    const { good, neutral, bad, contacts, filter } = this.state;
+
     const totalFeedback = countTotalFeedback(good, neutral, bad);
+
     const PositiveFeedbackPercentage = countPositiveFeedbackPercentage(
       good,
       neutral,
       bad
     );
+
     const hasFeedback = good > 0 || neutral > 0 || bad > 0;
+
+    const visibleContacts = this.getFilteredContacts();
+
     return (
       <>
         <Header></Header>
@@ -117,10 +145,14 @@ class App extends Component {
               </PhonebookArticle>
 
               <PhonebookArticle subtitle={'Contacts'}>
-                {/* { true ? <Filter /> <ContactList /> : <Notification message="There is no contacts yet" />} */}
-
-                {/* <Filter /> */}
-                <ContactList contacts={contacts} />
+                {contacts.length === 0 ? (
+                  <Notification message="There is no contacts yet" />
+                ) : (
+                  <>
+                    <Filter value={filter} onChange={this.changeFilter} />{' '}
+                    <ContactList contacts={visibleContacts} />
+                  </>
+                )}
               </PhonebookArticle>
             </div>
           </Section>
