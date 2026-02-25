@@ -1,16 +1,116 @@
-# React + Vite
+Вот пример README для твоего проекта на русском языке в формате Markdown:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+````markdown
+# React Feedback & Phonebook App
 
-Currently, two official plugins are available:
+## Описание
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Это мини-приложение на **React**, которое сочетает функциональность виджета
+обратной связи и телефонной книги. Пользователь может:
 
-## React Compiler
+- Оставлять обратную связь (Good / Neutral / Bad) и видеть статистику.
+- Добавлять контакты в телефонную книгу.
+- Фильтровать контакты по имени, фамилии или номеру телефона.
+- Удалять контакты и добавлять их в избранное.
+- Отображать аватар контакта в зависимости от пола. Для неизвестного пола
+  отображается общий аватар.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Приложение полностью интерактивное и использует современный подход с
+компонентами на **React** и управлением состояния через **Class Components**.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Реализовано
+
+### Виджет обратной связи
+
+- Кнопки для оценки: Good / Neutral / Bad.
+- Подсчет общего количества отзывов.
+- Процент положительных отзывов.
+- Сообщение, если отзывов пока нет.
+
+### Телефонная книга
+
+- Форма добавления контакта с полями:
+  - Имя
+  - Фамилия
+  - Телефон
+  - Пол (Male / Female)
+- Валидация номера телефона через `react-phone-number-input`.
+- Проверка на дублирование контактов по номеру телефона и сочетанию имени с
+  фамилией.
+- Список контактов с возможностью:
+  - Удаления контакта
+  - Добавления в избранное
+- Фильтр по имени, фамилии и номеру телефона.
+- Пустой список контактов и избранного отображает уведомление.
+
+---
+
+## Технологии
+
+- **React 19** — для построения пользовательского интерфейса.
+- **Vite** — сборщик проекта.
+- **PropTypes** — проверка типов props.
+- **react-icons** — иконки для кнопок и аватаров.
+- **react-phone-number-input** — удобный ввод и валидация телефонного номера.
+- **Emotion** — CSS-in-JS для стилизации компонентов.
+- **gh-pages** — деплой проекта на GitHub Pages.
+
+---
+
+## Установка и запуск
+
+1. Клонировать репозиторий:
+
+```bash
+git clone <URL-репозитория>
+cd react-mini-apps
+```
+````
+
+2. Установить зависимости:
+
+```bash
+npm install
+```
+
+3. Запуск в режиме разработки:
+
+```bash
+npm run dev
+```
+
+4. Сборка проекта:
+
+```bash
+npm run build
+```
+
+5. Предварительный просмотр собранного проекта:
+
+```bash
+npm run preview
+```
+
+6. Деплой на GitHub Pages:
+
+```bash
+npm run deploy
+```
+
+---
+
+## Структура проекта
+
+- `App.jsx` — главный компонент приложения.
+- `components/` — папка с отдельными компонентами:
+  - `Header`, `Footer`, `Hero` — оформление.
+  - `Section` — секции страницы.
+  - `FeedbackOptions`, `Statistics`, `Notification` — виджет обратной связи.
+  - `ContactForm`, `Filter`, `ContactList`, `ContactItem`, `PhonebookArticle` —
+    телефонная книга.
+
+- `utils/helpers.js` — функции подсчета статистики отзывов.
+
+---

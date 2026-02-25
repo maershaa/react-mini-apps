@@ -64,6 +64,24 @@ class ContactForm extends Component {
       return;
     }
 
+    const nameRegex =
+      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
+
+    if (!nameRegex.test(name.trim())) {
+      //Метод .test() проверяет, соответствует ли строка этому шаблону. Возвращает true, если строка подходит, и false, если нет.
+      alert(
+        'Invalid name. Only letters, spaces, apostrophes and hyphens are allowed'
+      );
+      return;
+    }
+
+    if (!nameRegex.test(surname.trim())) {
+      alert(
+        'Invalid surname. Only letters, spaces, apostrophes and hyphens are allowed'
+      );
+      return;
+    }
+
     const contactInfo = {
       id: crypto.randomUUID(),
       name: name.trim(),
