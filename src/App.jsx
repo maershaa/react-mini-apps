@@ -69,18 +69,18 @@ class App extends Component {
     }
   };
 
-  addContactToPhonebook = contactInfo => {
+  addContactToPhonebook = newContact => {
     const isDuplicate = this.state.contacts.some(
-      c => c.phoneNumber.trim() === contactInfo.phoneNumber.trim()
+      c => c.phoneNumber.trim() === newContact.phoneNumber.trim()
     );
 
     if (isDuplicate) {
-      alert('Contact already exists');
+      alert(`${newContact.name} уже есть в контактах`);
       return;
     }
 
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, contactInfo],
+      contacts: [...prevState.contacts, newContact],
     }));
   };
 
@@ -155,7 +155,6 @@ class App extends Component {
 
           <Section title="Feedback Widget" id="feedback">
             <FeedbackOptions
-              options={this.state}
               onLeaveFeedback={this.leaveFeedback}
             ></FeedbackOptions>
 
@@ -175,10 +174,7 @@ class App extends Component {
           <Section title="Phonebook-section" id="phonebook">
             <div className="phonebook-layout">
               <PhonebookArticle subtitle={'Phonebook'}>
-                <ContactForm
-                  addContact={this.addContactToPhonebook}
-                  contacts={contacts}
-                />
+                <ContactForm addContact={this.addContactToPhonebook} />
               </PhonebookArticle>
 
               <PhonebookArticle subtitle={'Contacts'}>

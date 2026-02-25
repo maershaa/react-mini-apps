@@ -14,12 +14,16 @@ class Filter extends Component {
           placeholder="Search by name or number"
           type="search"
           value={value}
+          aria-label="Search contacts"
         ></FilterInput>
       </Wrapper>
     );
   }
 }
 
-Filter.propTypes = {};
+Filter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export { Filter };

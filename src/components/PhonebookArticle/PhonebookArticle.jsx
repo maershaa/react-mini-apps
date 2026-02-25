@@ -10,4 +10,9 @@ const PhonebookArticle = ({ subtitle, children }) => {
   );
 };
 
+PhonebookArticle.propTypes = {
+  subtitle: PropTypes.number.isRequired, //!проверка чтобы знать как будет выглядеть ошибка.  надо string
+  children: PropTypes.node.isRequired,
+};
+
 export { PhonebookArticle };

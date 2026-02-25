@@ -6,19 +6,8 @@ import { FaFaceGrinWink, FaFaceSmile, FaFaceFrown } from 'react-icons/fa6';
 import { FeedbackOptionsWrapper } from '@/components/FeedbackOptions/FeedbackOptions.styled';
 
 class FeedbackOptions extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    };
-  }
-
   render() {
-    // Деструктурируем пропсы
-    const { options, onLeaveFeedback } = this.props;
+    const { onLeaveFeedback } = this.props;
     return (
       <FeedbackOptionsWrapper>
         <h3>Please leave a feedback</h3>
@@ -47,6 +36,7 @@ class FeedbackOptions extends Component {
   }
 }
 
-FeedbackOptions.propTypes = {};
-
+FeedbackOptions.propTypes = {
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 export { FeedbackOptions };

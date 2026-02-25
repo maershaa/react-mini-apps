@@ -9,6 +9,10 @@ const Section = ({ id, title, children }) => {
   );
 };
 
-Section.propTypes = {};
+Section.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  children: PropTypes.node.isRequired, //node — это всё, что React может отрендерить:строка, число, JSX, компонент, массив JSX, fragment
+};
 
 export { Section };

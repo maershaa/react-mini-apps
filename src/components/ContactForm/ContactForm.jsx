@@ -38,6 +38,7 @@ class ContactForm extends Component {
     //Благодаря [name] функция работает для всех полей сразу, не нужно писать отдельный обработчик для каждого <input>.
   };
 
+  // !на сколько оно надо и можно ли упростить?
   handlePhoneChange = phone => {
     const valid = phone ? isPossiblePhoneNumber(phone) : false;
     //isPossiblePhoneNumber - Проверяет, может ли введённый номер существовать реально, учитывая код страны, минимальную и максимальную длину.
@@ -106,6 +107,7 @@ class ContactForm extends Component {
             required
             onChange={this.handleFormChange}
             autoComplete="given-name" //Подсказывает браузеру, что это имя пользователя, чтобы он мог подставлять сохранённые данные
+            id={crypto.randomUUID()} //!зачем?
           />
         </div>
 
@@ -170,5 +172,7 @@ class ContactForm extends Component {
   }
 }
 
-ContactForm.propTypes = {};
+ContactForm.propTypes = {
+  addContact: PropTypes.func.isRequired,
+};
 export { ContactForm };
