@@ -101,13 +101,10 @@ class ContactForm extends Component {
             type="text"
             name="name"
             value={name}
-            //pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$" // разрешает только буквы (рус/англ), пробел, дефис и апостроф. Нельзя вводить: цифры и специальные символы (@, #, $ и т.д.)
             placeholder="Name"
-            // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob, Charles"
             required
             onChange={this.handleFormChange}
             autoComplete="given-name" //Подсказывает браузеру, что это имя пользователя, чтобы он мог подставлять сохранённые данные
-            id={crypto.randomUUID()} //!зачем?
           />
         </div>
 
@@ -117,9 +114,7 @@ class ContactForm extends Component {
             type="text"
             name="surname"
             value={surname}
-            //pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$" // разрешает только буквы (рус/англ), пробел, дефис и апостроф. Нельзя вводить: цифры и специальные символы (@, #, $ и т.д.)
             placeholder="Surname"
-            // title="Surname may contain only letters, apostrophe, dash and spaces. For example Mercer, Williams"
             required
             onChange={this.handleFormChange}
             autoComplete="family-name" //Подсказывает браузеру, что это фамилия пользователя, чтобы он мог подставлять сохранённые данные

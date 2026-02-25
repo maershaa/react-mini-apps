@@ -60,5 +60,14 @@ const ContactItem = ({
   );
 };
 
-ContactItem.propTypes = {};
+ContactItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  surname: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string.isRequired,
+  gender: PropTypes.string,
+  deleteContact: PropTypes.func.isRequired,
+  toggleFavourite: PropTypes.func.isRequired,
+  isFavourite: PropTypes.bool.isRequired,
+};
 export { ContactItem };

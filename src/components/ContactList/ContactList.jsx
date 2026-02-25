@@ -37,7 +37,7 @@ ContactList.propTypes = {
       name: PropTypes.string.isRequired,
       surname: PropTypes.string.isRequired,
       phoneNumber: PropTypes.string.isRequired,
-      gender: PropTypes.oneOf(['male', 'female']),
+      gender: PropTypes.string,
     })
   ).isRequired,
   deleteContact: PropTypes.func.isRequired,
@@ -49,7 +49,7 @@ ContactList.propTypes = {
       name: PropTypes.string.isRequired,
       surname: PropTypes.string.isRequired,
       phoneNumber: PropTypes.string.isRequired,
-      gender: PropTypes.oneOf(['male', 'female']),
+      gender: PropTypes.string,
     })
   ).isRequired, //isRequired ставим тк даже если массив пустой → не проверяется ни один элемент. shape внутри проверять просто нечего — React молчит. Когда добавятся элементы — они будут проверяться по shape.
 };

@@ -70,15 +70,25 @@ class App extends Component {
   };
 
   addContactToPhonebook = newContact => {
-    const isDuplicate = this.state.contacts.some(
+    const isDuplicateNumber = this.state.contacts.some(
       c => c.phoneNumber.trim() === newContact.phoneNumber.trim()
     );
-
-    if (isDuplicate) {
-      alert(`${newContact.name} уже есть в контактах`);
+    const isDuplicateNameSurname = this.state.contacts.some(
+      c =>
+        c.name.trim() === newContact.name.trim() &&
+        c.surname.trim() === newContact.surname.trim()
+    );
+    if (isDuplicateNumber) {
+      alert(`Phone number: ${newContact.phoneNumber} is already in contacts`);
       return;
     }
 
+    if (isDuplicateNameSurname) {
+      alert(
+        `Contact ${newContact.name} ${newContact.surname} is already in contacts`
+      );
+      return;
+    }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
