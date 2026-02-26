@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 
-import { Header } from '@/components/Header/Header';
-import { Hero } from '@/components/Hero/Hero';
-import { Footer } from '@/components/Footer/Footer';
+import { Header, Hero, Footer } from '@/components';
 
-import { Section } from '@/components/Section/Section';
-import { FeedbackOptions } from '@/components/FeedbackOptions/FeedbackOptions';
-import { Statistics } from '@/components/Statistics/Statistics';
-import { Notification } from '@/components/Notification/Notification';
+import {
+  Section,
+  FeedbackOptions,
+  Statistics,
+  Notification,
+} from '@/components';
 
-import { ContactForm } from '@/components/ContactForm/ContactForm';
-import { Filter } from '@/components/Filter/Filter';
-import { ContactList } from '@/components/ContactList/ContactList';
-import { PhonebookArticle } from '@/components/PhonebookArticle/PhonebookArticle';
+import {
+  ContactForm,
+  Filter,
+  ContactList,
+  PhonebookArticle,
+} from '@/components';
+
 import {
   countTotalFeedback,
   countPositiveFeedbackPercentage,

@@ -1,6 +1,6 @@
 import { FooterWrapper } from '@/components/Footer/Footer.styled';
 
-const Footer = props => {
+const Footer = () => {
   return (
     <FooterWrapper>
       <div className="footer-container">
