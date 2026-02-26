@@ -13,19 +13,27 @@ class FeedbackOptions extends Component {
         <h3>Please leave a feedback</h3>
         <ul className="feedback-buttons">
           <li>
-            <button className="btn-good" onClick={onLeaveFeedback}>
+            <button
+              className="btn-good"
+              onClick={onLeaveFeedback}
+              type="button"
+            >
               <FaFaceGrinWink />
               <span>Good</span>
             </button>
           </li>
           <li>
-            <button className="btn-neutral" onClick={onLeaveFeedback}>
+            <button
+              className="btn-neutral"
+              onClick={onLeaveFeedback}
+              type="button"
+            >
               <FaFaceSmile />
               <span>Neutral</span>
             </button>
           </li>
           <li>
-            <button className="btn-bad" onClick={onLeaveFeedback}>
+            <button className="btn-bad" onClick={onLeaveFeedback} type="button">
               <FaFaceFrown />
               <span> Bad</span>
             </button>

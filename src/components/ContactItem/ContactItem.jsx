@@ -41,6 +41,7 @@ const ContactItem = ({
 
       <ContactActions>
         <button
+          type="button"
           className="btn-favorite"
           aria-label="Add to favorites"
           onClick={() => toggleFavourite(id)}
@@ -49,6 +50,7 @@ const ContactItem = ({
         </button>
 
         <button
+          type="button"
           className="btn-delete"
           aria-label="Delete contact"
           onClick={() => deleteContact(id)}
