@@ -7,6 +7,7 @@ import {
   FeedbackOptions,
   Statistics,
   Notification,
+  Modal,
 } from '@/components';
 
 import {
@@ -57,6 +58,7 @@ class App extends Component {
     ],
     filter: '',
     favorites: [],
+    showModal: false,
   };
 
   leaveFeedback = evt => {
@@ -143,8 +145,12 @@ class App extends Component {
     });
   };
 
+  openModal = () => this.setState({ showModal: true });
+  closeModal = () => this.setState({ showModal: false });
+
   render() {
-    const { good, neutral, bad, contacts, filter, favorites } = this.state;
+    const { good, neutral, bad, contacts, filter, favorites, showModal } =
+      this.state;
 
     const totalFeedback = countTotalFeedback(good, neutral, bad);
 
@@ -163,7 +169,7 @@ class App extends Component {
         <Header></Header>
         <main>
           <Section title="Feedback Widget & Phonebook" id="hero">
-            <Hero></Hero>
+            <Hero openModal={this.openModal}></Hero>
           </Section>
 
           <Section title="Feedback Widget" id="feedback">
@@ -209,6 +215,51 @@ class App extends Component {
           </Section>
         </main>
         <Footer></Footer>
+
+        {showModal && (
+          <Modal closeModal={this.closeModal}>
+            <div class="modal-header">
+              <h2>About the Applications</h2>
+              <button
+                type="button"
+                class="modal-close-btn"
+                aria-label="Close modal"
+                onClick={this.closeModal}
+              >
+                ×
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <section>
+                <h3>Feedback Widget</h3>
+                <p>
+                  The Feedback Widget allows users to leave feedback by
+                  selecting
+                  <strong>Good</strong>, <strong>Neutral</strong>, or{' '}
+                  <strong>Bad</strong>. The application calculates the total
+                  number of responses and the percentage of positive feedback in
+                  real time.
+                </p>
+              </section>
+
+              <section>
+                <h3>Phonebook</h3>
+                <p>
+                  The Phonebook enables users to add, filter, and manage
+                  contacts. Duplicate entries are prevented, and phone numbers
+                  are validated before saving. Contacts can be deleted or marked
+                  as favorites.
+                </p>
+              </section>
+
+              <p>
+                Both applications demonstrate React state management,
+                conditional rendering, and component-based architecture.
+              </p>
+            </div>
+          </Modal>
+        )}
       </>
     );
   }

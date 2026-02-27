@@ -1,6 +1,7 @@
 export { Header } from './Header';
 export { Hero } from './Hero';
 export { Footer } from './Footer';
+export { Modal } from './Modal';
 
 export { Section } from './Section';
 export { FeedbackOptions } from './FeedbackOptions';

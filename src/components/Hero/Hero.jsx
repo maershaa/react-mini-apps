@@ -1,5 +1,5 @@
 import { HeroWrapper } from '@/components/Hero/Hero.styled';
-const Hero = props => {
+const Hero = ({ openModal }) => {
   return (
     <HeroWrapper>
       <p className="subtitle">Собираем отзывы и управляем контактами</p>
@@ -18,6 +18,10 @@ const Hero = props => {
           </a>
         </li>
       </ul>
+
+      <button className="DiscoverMoreBtn" type="button" onClick={openModal}>
+        Discover more
+      </button>
     </HeroWrapper>
   );
 };

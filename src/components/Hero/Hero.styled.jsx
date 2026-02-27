@@ -51,6 +51,22 @@ const HeroWrapper = styled.div`
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
     filter: brightness(1.05);
   }
+
+  .DiscoverMoreBtn {
+    margin-top: 30px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: ${({ theme }) => theme.colors.text.primary};
+
+    :hover {
+      background: ${({ theme }) => theme.colors.text.secondary};
+    }
+  }
 `;
 
 export { HeroWrapper };
