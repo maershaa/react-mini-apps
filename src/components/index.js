@@ -12,3 +12,9 @@ export { ContactForm } from './ContactForm';
 export { Filter } from './Filter';
 export { ContactList } from './ContactList';
 export { PhonebookArticle } from './PhonebookArticle';
+
+export { Searchbar } from './Searchbar';
+export { ImageGallery } from './ImageGallery';
+export { Loader } from './Loader';
+
+export { Button } from './Button';

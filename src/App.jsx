@@ -17,6 +17,8 @@ import {
   PhonebookArticle,
 } from '@/components';
 
+import { Searchbar, ImageGallery, Loader, Button } from '@/components';
+
 import {
   countTotalFeedback,
   countPositiveFeedbackPercentage,
@@ -59,7 +61,30 @@ class App extends Component {
     filter: '',
     favorites: [],
     showModal: false,
+    showGalleryModal: false,
   };
+
+  componentDidMount() {
+    // Считываем контакты из localStorage при монтировании компонента
+    // Если данных нет, используем пустой массив
+    const contactsFromStorage =
+      JSON.parse(localStorage.getItem('contactsList')) || [];
+
+    if (contactsFromStorage) {
+      // Устанавливаем контакты в состояние, чтобы они отобразились в приложении
+      this.setState({
+        contacts: contactsFromStorage,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // Проверяем, изменились ли контакты по сравнению с предыдущим состоянием
+    if (prevState.contacts !== this.state.contacts) {
+      // Сохраняем/Удаляем новые контакты в localStorage
+      localStorage.setItem('contactsList', JSON.stringify(this.state.contacts));
+    }
+  }
 
   leaveFeedback = evt => {
     const btn = evt.target.closest('button');
@@ -149,8 +174,16 @@ class App extends Component {
   closeModal = () => this.setState({ showModal: false });
 
   render() {
-    const { good, neutral, bad, contacts, filter, favorites, showModal } =
-      this.state;
+    const {
+      good,
+      neutral,
+      bad,
+      contacts,
+      filter,
+      favorites,
+      showModal,
+      showGalleryModal,
+    } = this.state;
 
     const totalFeedback = countTotalFeedback(good, neutral, bad);
 
@@ -212,6 +245,18 @@ class App extends Component {
                 )}
               </PhonebookArticle>
             </div>
+          </Section>
+
+          <Section title="Gallery" id="gallery">
+            <Searchbar />
+            <ImageGallery />
+            <Loader />
+            <Button />
+            {showGalleryModal && (
+              <Modal closeModal={this.closeModal}>
+                <h2>Это модалка</h2>
+              </Modal>
+            )}
           </Section>
         </main>
         <Footer></Footer>

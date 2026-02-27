@@ -17,6 +17,10 @@ const Header = props => {
           <li>
             <a href="#phonebook">Phonebook</a>
           </li>
+
+          <li>
+            <a href="#gallery"> Gallery </a>
+          </li>
         </ul>
       </nav>
     </HeaderWrapper>
