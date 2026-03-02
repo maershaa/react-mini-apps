@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { StatisticsWrapper } from '@/components/Statistics/Statistics.styled';
+import { StatisticsWrapper } from '@/components/Section_Feedback/Statistics/Statistics.styled';
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
   return (
     <StatisticsWrapper>

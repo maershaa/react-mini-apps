@@ -17,7 +17,7 @@ import {
   PhonebookArticle,
 } from '@/components';
 
-import { Searchbar, ImageGallery, Loader, Button } from '@/components';
+import { Searchbar, ImageGallery, Button } from '@/components';
 
 import {
   countTotalFeedback,
@@ -62,9 +62,10 @@ class App extends Component {
     favorites: [],
     showModal: false,
     showGalleryModal: false,
+    queryPhoto: '',
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     // Считываем контакты из localStorage при монтировании компонента
     // Если данных нет, используем пустой массив
     const contactsFromStorage =
@@ -173,6 +174,12 @@ class App extends Component {
   openModal = () => this.setState({ showModal: true });
   closeModal = () => this.setState({ showModal: false });
 
+  handleSearchPhotosFormSubmit = value => {
+    this.setState({
+      queryPhoto: value,
+    });
+  };
+
   render() {
     const {
       good,
@@ -183,6 +190,7 @@ class App extends Component {
       favorites,
       showModal,
       showGalleryModal,
+      queryPhoto,
     } = this.state;
 
     const totalFeedback = countTotalFeedback(good, neutral, bad);
@@ -248,13 +256,13 @@ class App extends Component {
           </Section>
 
           <Section title="Gallery" id="gallery">
-            <Searchbar />
-            <ImageGallery />
-            <Loader />
+            <Searchbar onSubmit={this.handleSearchPhotosFormSubmit} />
+
+            <ImageGallery queryPhoto={queryPhoto} />
             <Button />
             {showGalleryModal && (
               <Modal closeModal={this.closeModal}>
-                <h2>Это модалка</h2>
+                <img src="" alt="" />
               </Modal>
             )}
           </Section>
@@ -263,11 +271,11 @@ class App extends Component {
 
         {showModal && (
           <Modal closeModal={this.closeModal}>
-            <div class="modal-header">
+            <div className="modal-header">
               <h2>About the Applications</h2>
               <button
                 type="button"
-                class="modal-close-btn"
+                className="modal-close-btn"
                 aria-label="Close modal"
                 onClick={this.closeModal}
               >
@@ -275,7 +283,7 @@ class App extends Component {
               </button>
             </div>
 
-            <div class="modal-body">
+            <div className="modal-body">
               <section>
                 <h3>Feedback Widget</h3>
                 <p>

@@ -6,7 +6,7 @@ import {
   Form,
   GenderGroup,
   RadioOption,
-} from '@/components/ContactForm/ContactForm.styled';
+} from '@/components/Section_Phonebook/ContactForm/ContactForm.styled';
 
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';

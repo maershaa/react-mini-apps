@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import { FaFaceGrinWink, FaFaceSmile, FaFaceFrown } from 'react-icons/fa6';
 
-import { FeedbackOptionsWrapper } from '@/components/FeedbackOptions/FeedbackOptions.styled';
+import { FeedbackOptionsWrapper } from '@/components/Section_Feedback/FeedbackOptions/FeedbackOptions.styled';
 
 class FeedbackOptions extends Component {
   render() {

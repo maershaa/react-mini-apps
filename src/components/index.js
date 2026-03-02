@@ -4,17 +4,15 @@ export { Footer } from './Footer';
 export { Modal } from './Modal';
 
 export { Section } from './Section';
-export { FeedbackOptions } from './FeedbackOptions';
-export { Statistics } from './Statistics';
 export { Notification } from './Notification/';
 
-export { ContactForm } from './ContactForm';
-export { Filter } from './Filter';
-export { ContactList } from './ContactList';
-export { PhonebookArticle } from './PhonebookArticle';
+export { FeedbackOptions, Statistics } from './Section_Feedback';
 
-export { Searchbar } from './Searchbar';
-export { ImageGallery } from './ImageGallery';
-export { Loader } from './Loader';
+export {
+  ContactForm,
+  Filter,
+  ContactList,
+  PhonebookArticle,
+} from './Section_Phonebook';
 
-export { Button } from './Button';
+export { Searchbar, ImageGallery, Loader, Button } from './Section_Gallery';

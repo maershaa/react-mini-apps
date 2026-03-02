@@ -1,0 +1,10 @@
+import styled from '@emotion/styled';
+
+const GalleryList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  gap: 16px;
+  padding: 20px;
+`;
+export { GalleryList };

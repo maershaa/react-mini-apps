@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Wrapper, FilterInput } from '@/components/Filter/Filter.styled';
+import {
+  Wrapper,
+  FilterInput,
+} from '@/components/Section_Phonebook/Filter/Filter.styled';
 import { IoIosSearch } from 'react-icons/io';
 class Filter extends Component {
   render() {

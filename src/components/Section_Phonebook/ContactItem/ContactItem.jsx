@@ -11,7 +11,7 @@ import {
   AvatarImg,
   ContactDetails,
   ContactActions,
-} from '@/components/ContactItem/ContactItem.styled';
+} from '@/components/Section_Phonebook/ContactItem/ContactItem.styled';
 
 const ContactItem = ({
   id,

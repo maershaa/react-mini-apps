@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Article } from '@/components/PhonebookArticle/PhonebookArticle.styled';
+import { Article } from '@/components/Section_Phonebook/PhonebookArticle/PhonebookArticle.styled';
 
 const PhonebookArticle = ({ subtitle, children }) => {
   return (
