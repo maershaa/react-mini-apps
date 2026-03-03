@@ -13,7 +13,7 @@ class ImageGalleryItem extends Component {
     } = this.props.photo;
     return (
       <GalleryItem>
-        <img src={previewURL} alt={tags} />
+        <img src={previewURL} alt={tags} loading="lazy" />
         <p>
           Views: <span>{views}</span>
         </p>

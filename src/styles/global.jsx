@@ -69,6 +69,8 @@ const globalStyles = theme => css`
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
+
+    box-shadow: ${theme.shadows.button};
   }
 
   button:active {
@@ -83,16 +85,6 @@ const globalStyles = theme => css`
   }
 
   /* ---------------- section ---------------- */
-
-  .section-content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    justify-content: center;
-    text-align: center;
-    gap: 20px;
-  }
 
   /* ---------------- phonebook ---------------- */
 

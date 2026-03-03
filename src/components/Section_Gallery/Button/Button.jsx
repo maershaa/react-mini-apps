@@ -1,10 +1,15 @@
-const Button = () => {
-  return (
-    <button type="submit" className="button">
-      <span className="button-label">Search</span>
-    </button>
-  );
-};
+import { Component } from 'react';
+
+class Button extends Component {
+  render() {
+    const { text, onClick } = this.props;
+    return (
+      <button type="button" onClick={onClick}>
+        {text}
+      </button>
+    );
+  }
+}
 
 export { Button };
 

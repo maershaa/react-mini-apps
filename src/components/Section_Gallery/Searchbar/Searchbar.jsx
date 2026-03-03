@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { IoIosSearch } from 'react-icons/io';
-
+import { SearchForm, InputWrapper } from './Searchbar.styled';
 class Searchbar extends Component {
   state = {
     searchValue: '',
@@ -30,15 +30,13 @@ class Searchbar extends Component {
 
   render() {
     const { searchValue } = this.state;
-
     return (
-      <header className="searchbar">
-        <form className="form" onSubmit={this.handleSubmit}>
-          <button type="submit" className="button">
-            <span className="button-label">Search</span>
-          </button>
+      <SearchForm onSubmit={this.handleSubmit}>
+        <button type="submit" disabled={!searchValue}>
+          Search
+        </button>
+        <InputWrapper>
           <IoIosSearch />
-
           <input
             className="input"
             type="text"
@@ -49,8 +47,8 @@ class Searchbar extends Component {
             onChange={this.onChange}
             value={searchValue}
           />
-        </form>
-      </header>
+        </InputWrapper>
+      </SearchForm>
     );
   }
 }

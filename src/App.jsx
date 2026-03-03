@@ -18,6 +18,7 @@ import {
 } from '@/components';
 
 import { Searchbar, ImageGallery, Button } from '@/components';
+import { getImages } from '@/api/api';
 
 import {
   countTotalFeedback,
@@ -259,7 +260,6 @@ class App extends Component {
             <Searchbar onSubmit={this.handleSearchPhotosFormSubmit} />
 
             <ImageGallery queryPhoto={queryPhoto} />
-            <Button />
             {showGalleryModal && (
               <Modal closeModal={this.closeModal}>
                 <img src="" alt="" />

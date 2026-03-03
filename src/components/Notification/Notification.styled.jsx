@@ -7,6 +7,8 @@ export const FeedbackNotification = styled.div`
   column-gap: 16px;
 
   margin-top: 24px;
+  margin-bottom: 24px;
+
   padding: 16px 24px;
   max-width: 50%;
   min-height: 50px;
