@@ -13,13 +13,12 @@ class ImageGallery extends Component {
     photos: [],
     isLoading: false,
     page: 1,
-
+    totalPages: 0,
     // error: null,
   };
 
   async componentDidUpdate(prevProps) {
     const { queryPhoto } = this.props;
-
     if (prevProps.queryPhoto !== queryPhoto && queryPhoto !== '') {
       try {
         this.setState({
@@ -66,6 +65,8 @@ class ImageGallery extends Component {
 
   render() {
     const { photos, isLoading, page, totalPages } = this.state;
+    const { openGalleryModal } = this.props;
+
     console.log('🚀 ~ ImageGallery ~ render ~ photos:', photos);
     return (
       <>
@@ -78,7 +79,7 @@ class ImageGallery extends Component {
                 <ImageGalleryItem
                   key={photo.id}
                   photo={photo}
-                  onClick={() => this.props.openGalleryModal(photo)}
+                  onClick={() => openGalleryModal(photo)}
                 />
               ))}
             </GalleryList>
@@ -93,4 +94,9 @@ class ImageGallery extends Component {
     );
   }
 }
+
+ImageGallery.propTypes = {
+  queryPhoto: PropTypes.string.isRequired,
+  openGalleryModal: PropTypes.func.isRequired,
+};
 export { ImageGallery };

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { IoIosSearch } from 'react-icons/io';
 import { SearchForm, InputWrapper } from './Searchbar.styled';
+import PropTypes from 'prop-types';
+
 class Searchbar extends Component {
   state = {
     searchValue: '',
@@ -52,5 +54,9 @@ class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export { Searchbar };

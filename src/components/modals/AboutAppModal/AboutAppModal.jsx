@@ -46,4 +46,7 @@ class AboutAppModal extends Component {
   }
 }
 
+AboutAppModal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+};
 export { AboutAppModal };

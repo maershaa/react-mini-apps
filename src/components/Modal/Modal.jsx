@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal_Backdrop, Modal_Content } from '@/components/Modal/Modal.styled';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -20,8 +21,6 @@ class Modal extends Component {
   };
 
   handleBackdropClick = evt => {
-    console.log('🚀 ~ Modal ~ evt.target:', evt.target);
-    console.log('🚀 ~ Modal ~ evt.currentTarget:', evt.currentTarget);
     if (evt.target === evt.currentTarget) {
       this.props.closeModal();
     }
@@ -35,5 +34,10 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export { Modal };

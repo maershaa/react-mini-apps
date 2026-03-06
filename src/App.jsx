@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-import { Header, Hero, Footer } from '@/components';
-
 import {
+  Header,
+  Hero,
+  Footer,
   Section,
   FeedbackOptions,
   Statistics,
@@ -10,16 +11,13 @@ import {
   Modal,
   AboutAppModal,
   ImagePreviewModal,
-} from '@/components';
-
-import {
   ContactForm,
   Filter,
   ContactList,
   PhonebookArticle,
+  Searchbar,
+  ImageGallery,
 } from '@/components';
-
-import { Searchbar, ImageGallery } from '@/components';
 
 import {
   countTotalFeedback,
@@ -39,26 +37,26 @@ class App extends Component {
       //   gender: 'female',
       //   phoneNumber: '459-12-56',
       // },
-      {
-        id: 'id-2',
-        name: 'Hermione ',
-        surname: 'Kline',
-        gender: 'female',
-        phoneNumber: '443-89-12',
-      },
-      {
-        id: 'id-3',
-        name: 'Eden ',
-        gender: 'male',
-        surname: 'Clements',
-        phoneNumber: '645-17-79',
-      },
-      {
-        id: 'id-4',
-        name: 'Annie ',
-        surname: 'Copeland',
-        phoneNumber: '227-91-26',
-      },
+      // {
+      //   id: 'id-2',
+      //   name: 'Hermione ',
+      //   surname: 'Kline',
+      //   gender: 'female',
+      //   phoneNumber: '443-89-12',
+      // },
+      // {
+      //   id: 'id-3',
+      //   name: 'Eden ',
+      //   gender: 'male',
+      //   surname: 'Clements',
+      //   phoneNumber: '645-17-79',
+      // },
+      // {
+      //   id: 'id-4',
+      //   name: 'Annie ',
+      //   surname: 'Copeland',
+      //   phoneNumber: '227-91-26',
+      // },
     ],
     filter: '',
     favorites: [],
@@ -297,7 +295,7 @@ class App extends Component {
             )}
           </Section>
         </main>
-        <Footer></Footer>
+        <Footer />
         {showModal && (
           <Modal closeModal={this.closeModal}>
             <AboutAppModal closeModal={this.closeModal} />
