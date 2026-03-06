@@ -5,15 +5,21 @@ class ImageGalleryItem extends Component {
     const {
       tags,
       previewURL,
-      webformatURL,
-      largeImageURL,
+      previewWidth,
+      previewHeight,
       views,
       downloads,
       likes,
     } = this.props.photo;
     return (
-      <GalleryItem>
-        <img src={previewURL} alt={tags} loading="lazy" />
+      <GalleryItem onClick={this.props.onClick}>
+        <img
+          src={previewURL}
+          width={previewWidth}
+          height={previewHeight}
+          alt={tags}
+          loading="lazy"
+        />
         <p>
           Views: <span>{views}</span>
         </p>

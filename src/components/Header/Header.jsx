@@ -4,7 +4,7 @@ const Header = props => {
     <HeaderWrapper>
       <nav className="nav">
         <Logo href="/" aria-label="Logo of the project">
-          Feedback <span>&</span> Phonebook{' '}
+          Feedback <span>&</span> Phonebook
         </Logo>
 
         <ul className="nav-list">

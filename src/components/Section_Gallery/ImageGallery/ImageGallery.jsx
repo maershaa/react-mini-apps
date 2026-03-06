@@ -75,7 +75,11 @@ class ImageGallery extends Component {
           <>
             <GalleryList>
               {photos.map(photo => (
-                <ImageGalleryItem key={photo.id} photo={photo} />
+                <ImageGalleryItem
+                  key={photo.id}
+                  photo={photo}
+                  onClick={() => this.props.openGalleryModal(photo)}
+                />
               ))}
             </GalleryList>
             {page < totalPages && (

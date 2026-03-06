@@ -3,7 +3,7 @@ const ContactCard = styled.li`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 20px;
-  justify-items: center;
+  justify-items: normal;
   align-items: center;
 `;
 

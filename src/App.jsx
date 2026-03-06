@@ -18,7 +18,6 @@ import {
 } from '@/components';
 
 import { Searchbar, ImageGallery, Button } from '@/components';
-import { getImages } from '@/api/api';
 
 import {
   countTotalFeedback,
@@ -62,8 +61,10 @@ class App extends Component {
     filter: '',
     favorites: [],
     showModal: false,
-    showGalleryModal: false,
     queryPhoto: '',
+
+    showGalleryModal: false,
+    modalGalleryData: null,
   };
 
   async componentDidMount() {
@@ -175,6 +176,15 @@ class App extends Component {
   openModal = () => this.setState({ showModal: true });
   closeModal = () => this.setState({ showModal: false });
 
+  openGalleryModal = data => {
+    console.log('🚀 ~ App ~ data:', data);
+    this.setState({
+      showGalleryModal: true,
+      modalGalleryData: data,
+    });
+  };
+  closeGalleryModal = () => this.setState({ showGalleryModal: false });
+
   handleSearchPhotosFormSubmit = value => {
     this.setState({
       queryPhoto: value,
@@ -190,8 +200,11 @@ class App extends Component {
       filter,
       favorites,
       showModal,
-      showGalleryModal,
+
       queryPhoto,
+
+      showGalleryModal,
+      modalGalleryData,
     } = this.state;
 
     const totalFeedback = countTotalFeedback(good, neutral, bad);
@@ -259,10 +272,32 @@ class App extends Component {
           <Section title="Gallery" id="gallery">
             <Searchbar onSubmit={this.handleSearchPhotosFormSubmit} />
 
-            <ImageGallery queryPhoto={queryPhoto} />
+            <ImageGallery
+              queryPhoto={queryPhoto}
+              openGalleryModal={this.openGalleryModal}
+            />
             {showGalleryModal && (
-              <Modal closeModal={this.closeModal}>
-                <img src="" alt="" />
+              <Modal closeModal={this.closeGalleryModal}>
+                <div className="modal-header">
+                  <button
+                    type="button"
+                    className="modal-close-btn"
+                    aria-label="Close modal"
+                    onClick={this.closeGalleryModal}
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <div className="modal-body">
+                  <img
+                    src={modalGalleryData.webformatURL}
+                    width={modalGalleryData.webformatWidth}
+                    height={modalGalleryData.webformatHeight}
+                    alt={modalGalleryData.tagImg}
+                    loading="lazy"
+                  />
+                </div>
               </Modal>
             )}
           </Section>

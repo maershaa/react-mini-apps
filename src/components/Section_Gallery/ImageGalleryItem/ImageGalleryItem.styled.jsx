@@ -13,6 +13,7 @@ const GalleryItem = styled.li`
   box-shadow: ${({ theme }) => theme.shadows.card};
   transition: transform 0.3s ease;
 
+  cursor: pointer;
   :hover {
     transform: scale(1.05);
   }

@@ -16,8 +16,8 @@ const Modal_Content = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 90%;
-  max-width: 600px;
+  width: auto;
+  max-width: 80%;
   min-height: 300px;
 
   padding: 40px;
@@ -67,6 +67,8 @@ const Modal_Content = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    margin-bottom: 10px;
   }
 
   .modal-close-btn {
@@ -76,6 +78,8 @@ const Modal_Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-left: auto;
 
     font-size: 1.25rem;
     font-weight: 500;

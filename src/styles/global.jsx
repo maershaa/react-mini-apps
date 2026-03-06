@@ -69,8 +69,6 @@ const globalStyles = theme => css`
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-
-    box-shadow: ${theme.shadows.button};
   }
 
   button:active {

@@ -55,12 +55,8 @@ const HeroWrapper = styled.div`
   .DiscoverMoreBtn {
     margin-top: 30px;
     padding: 12px 24px;
-    border-radius: 12px;
+
     font-weight: 500;
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-    color: white;
     background: ${({ theme }) => theme.colors.text.primary};
 
     :hover {
