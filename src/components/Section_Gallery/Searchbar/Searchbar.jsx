@@ -9,7 +9,6 @@ class Searchbar extends Component {
   };
 
   onChange = evt => {
-    console.log(evt.target.value);
     this.setState({
       searchValue: evt.target.value.toLowerCase(),
     });

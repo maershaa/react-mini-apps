@@ -67,7 +67,6 @@ class ImageGallery extends Component {
     const { photos, isLoading, page, totalPages } = this.state;
     const { openGalleryModal } = this.props;
 
-    console.log('🚀 ~ ImageGallery ~ render ~ photos:', photos);
     return (
       <>
         {isLoading && <Loader />}
