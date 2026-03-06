@@ -17,7 +17,7 @@ import {
   PhonebookArticle,
 } from '@/components';
 
-import { Searchbar, ImageGallery, Button } from '@/components';
+import { Searchbar, ImageGallery } from '@/components';
 
 import {
   countTotalFeedback,
@@ -30,13 +30,13 @@ class App extends Component {
     neutral: 0,
     bad: 0,
     contacts: [
-      {
-        id: 'id-1',
-        name: 'Rosie ',
-        surname: 'Simpson',
-        gender: 'female',
-        phoneNumber: '459-12-56',
-      },
+      // {
+      //   id: 'id-1',
+      //   name: 'Rosie ',
+      //   surname: 'Simpson',
+      //   gender: 'female',
+      //   phoneNumber: '459-12-56',
+      // },
       {
         id: 'id-2',
         name: 'Hermione ',
@@ -157,17 +157,19 @@ class App extends Component {
 
   toggleFavourite = id => {
     this.setState(prevState => {
-      const isFavourite = prevState.favorites.some(el => el.id === id);
+      const isFavourite = prevState.favorites.includes(id);
+
       if (isFavourite)
         // удалить из favorites
         return {
-          favorites: prevState.favorites.filter(el => el.id !== id),
+          favorites: prevState.favorites.filter(elId => elId !== id),
         };
       else {
         // добавить в favorites
         const newFavoriteContact = prevState.contacts.find(el => el.id === id);
+        // console.log("🚀 ~ App ~ newFavoriteContact:", newFavoriteContact);
         return {
-          favorites: [...prevState.favorites, newFavoriteContact],
+          favorites: [...prevState.favorites, newFavoriteContact.id],
         };
       }
     });
@@ -177,13 +179,13 @@ class App extends Component {
   closeModal = () => this.setState({ showModal: false });
 
   openGalleryModal = data => {
-    console.log('🚀 ~ App ~ data:', data);
     this.setState({
       showGalleryModal: true,
       modalGalleryData: data,
     });
   };
-  closeGalleryModal = () => this.setState({ showGalleryModal: false });
+  closeGalleryModal = () =>
+    this.setState({ showGalleryModal: false, modalGalleryData: null });
 
   handleSearchPhotosFormSubmit = value => {
     this.setState({
@@ -209,7 +211,7 @@ class App extends Component {
 
     const totalFeedback = countTotalFeedback(good, neutral, bad);
 
-    const PositiveFeedbackPercentage = countPositiveFeedbackPercentage(
+    const positiveFeedbackPercentage = countPositiveFeedbackPercentage(
       good,
       neutral,
       bad
@@ -221,7 +223,7 @@ class App extends Component {
 
     return (
       <>
-        <Header></Header>
+        <Header />
         <main>
           <Section title="Feedback Widget & Phonebook" id="hero">
             <Hero openModal={this.openModal}></Hero>
@@ -238,7 +240,7 @@ class App extends Component {
                 neutral={neutral}
                 bad={bad}
                 total={totalFeedback}
-                positivePercentage={PositiveFeedbackPercentage}
+                positivePercentage={positiveFeedbackPercentage}
               ></Statistics>
             ) : (
               <Notification message="There is no feedback yet"></Notification>
@@ -252,11 +254,14 @@ class App extends Component {
               </PhonebookArticle>
 
               <PhonebookArticle subtitle={'Contacts'}>
-                {contacts.length === 0 ? (
-                  <Notification message="There is no contacts yet" />
-                ) : (
+                {contacts.length === 0 && (
+                  <Notification message="There are no contacts yet" />
+                )}
+
+                {contacts.length > 0 && (
                   <>
-                    <Filter value={filter} onChange={this.changeFilter} />{' '}
+                    <Filter value={filter} onChange={this.changeFilter} />
+
                     <ContactList
                       contacts={visibleContacts}
                       favorites={favorites}
@@ -303,7 +308,6 @@ class App extends Component {
           </Section>
         </main>
         <Footer></Footer>
-
         {showModal && (
           <Modal closeModal={this.closeModal}>
             <div className="modal-header">

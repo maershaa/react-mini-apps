@@ -11,7 +11,7 @@ const ContactList = ({
     <ul>
       {contacts.map(contact => {
         const { id, name, surname, phoneNumber, gender } = contact;
-        const isFavourite = favorites.some(fav => fav.id === id);
+        const isFavourite = favorites.some(favID => favID === id);
 
         return (
           <ContactItem
