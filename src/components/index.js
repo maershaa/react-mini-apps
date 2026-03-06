@@ -15,4 +15,6 @@ export {
   PhonebookArticle,
 } from './Section_Phonebook';
 
+export { AboutAppModal, ImagePreviewModal } from './modals';
+
 export { Searchbar, ImageGallery, Loader, Button } from './Section_Gallery';

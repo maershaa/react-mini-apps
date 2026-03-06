@@ -8,6 +8,8 @@ import {
   Statistics,
   Notification,
   Modal,
+  AboutAppModal,
+  ImagePreviewModal,
 } from '@/components';
 
 import {
@@ -184,8 +186,12 @@ class App extends Component {
       modalGalleryData: data,
     });
   };
+
   closeGalleryModal = () =>
-    this.setState({ showGalleryModal: false, modalGalleryData: null });
+    this.setState({
+      showGalleryModal: false,
+      modalGalleryData: null,
+    });
 
   handleSearchPhotosFormSubmit = value => {
     this.setState({
@@ -283,26 +289,10 @@ class App extends Component {
             />
             {showGalleryModal && (
               <Modal closeModal={this.closeGalleryModal}>
-                <div className="modal-header">
-                  <button
-                    type="button"
-                    className="modal-close-btn"
-                    aria-label="Close modal"
-                    onClick={this.closeGalleryModal}
-                  >
-                    ×
-                  </button>
-                </div>
-
-                <div className="modal-body">
-                  <img
-                    src={modalGalleryData.webformatURL}
-                    width={modalGalleryData.webformatWidth}
-                    height={modalGalleryData.webformatHeight}
-                    alt={modalGalleryData.tagImg}
-                    loading="lazy"
-                  />
-                </div>
+                <ImagePreviewModal
+                  closeModal={this.closeGalleryModal}
+                  modalGalleryData={modalGalleryData}
+                />
               </Modal>
             )}
           </Section>
@@ -310,46 +300,7 @@ class App extends Component {
         <Footer></Footer>
         {showModal && (
           <Modal closeModal={this.closeModal}>
-            <div className="modal-header">
-              <h2>About the Applications</h2>
-              <button
-                type="button"
-                className="modal-close-btn"
-                aria-label="Close modal"
-                onClick={this.closeModal}
-              >
-                ×
-              </button>
-            </div>
-
-            <div className="modal-body">
-              <section>
-                <h3>Feedback Widget</h3>
-                <p>
-                  The Feedback Widget allows users to leave feedback by
-                  selecting
-                  <strong>Good</strong>, <strong>Neutral</strong>, or{' '}
-                  <strong>Bad</strong>. The application calculates the total
-                  number of responses and the percentage of positive feedback in
-                  real time.
-                </p>
-              </section>
-
-              <section>
-                <h3>Phonebook</h3>
-                <p>
-                  The Phonebook enables users to add, filter, and manage
-                  contacts. Duplicate entries are prevented, and phone numbers
-                  are validated before saving. Contacts can be deleted or marked
-                  as favorites.
-                </p>
-              </section>
-
-              <p>
-                Both applications demonstrate React state management,
-                conditional rendering, and component-based architecture.
-              </p>
-            </div>
+            <AboutAppModal closeModal={this.closeModal} />
           </Modal>
         )}
       </>
