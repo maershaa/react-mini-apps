@@ -230,7 +230,7 @@ class App extends Component {
         <Header />
         <main>
           <Section title="Feedback Widget & Phonebook" id="hero">
-            <Hero openModal={this.openModal}></Hero>
+            <Hero openModal={this.openModal} />
           </Section>
 
           <Section title="Feedback Widget" id="feedback">
