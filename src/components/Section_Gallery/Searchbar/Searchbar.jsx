@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { IoIosSearch } from 'react-icons/io';
 import { SearchForm, InputWrapper } from './Searchbar.styled';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 class Searchbar extends Component {
   state = {
@@ -19,7 +20,7 @@ class Searchbar extends Component {
     const { searchValue } = this.state;
 
     if (searchValue.trim() === '') {
-      alert('Введите поисковой параметр');
+      toast.info('Введите поисковой параметр');
       return;
     }
 

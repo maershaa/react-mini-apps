@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import { ImageGalleryItem } from '@/components/Section_Gallery/ImageGalleryItem';
 import { getImages } from '@/api/api';
 import { Loader, Notification } from '@/components';
@@ -29,11 +30,18 @@ class ImageGallery extends Component {
 
         const data = await getImages(queryPhoto, 1);
 
+        if (data.hits.length === 0) {
+          toast.info('No images found for your query');
+        } else {
+          toast.success('Images loaded successfully!');
+        }
+
         this.setState({
           photos: data.hits,
           totalPages: Math.ceil(data.totalHits / photosPerPage),
         });
       } catch (e) {
+        toast.error('Failed to fetch images');
         console.log(`Axios request failed: ${e}`);
       } finally {
         this.setState({ isLoading: false });

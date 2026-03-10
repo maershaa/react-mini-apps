@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { MdPermIdentity } from 'react-icons/md';
 import { HiOutlineIdentification } from 'react-icons/hi';
@@ -55,12 +56,12 @@ class ContactForm extends Component {
     const { name, surname, phoneNumber, gender, phoneValid } = this.state;
 
     if (!phoneValid) {
-      alert('Invalid phone');
+      toast.error('Invalid phone');
       return;
     }
 
     if (!name || !surname || !phoneNumber || !gender) {
-      alert('Fill all fields');
+      toast.warn('Fill all fields');
       return;
     }
 
@@ -69,14 +70,14 @@ class ContactForm extends Component {
 
     if (!nameRegex.test(name.trim())) {
       //Метод .test() проверяет, соответствует ли строка этому шаблону. Возвращает true, если строка подходит, и false, если нет.
-      alert(
+      toast.error(
         'Invalid name. Only letters, spaces, apostrophes and hyphens are allowed'
       );
       return;
     }
 
     if (!nameRegex.test(surname.trim())) {
-      alert(
+      toast.error(
         'Invalid surname. Only letters, spaces, apostrophes and hyphens are allowed'
       );
       return;
@@ -91,6 +92,7 @@ class ContactForm extends Component {
     };
 
     this.props.addContact(contactInfo);
+    toast.success('Contact added successfully!');
     this.resetForm();
   };
 

@@ -92,6 +92,7 @@
 - **react-phone-number-input** — ввод и валидация телефонных номеров
 - **Emotion** — CSS-in-JS стилизация
 - **gh-pages** — деплой на GitHub Pages
+- **react-toastify** — уведомления об успехах и ошибках
 
 ---
 

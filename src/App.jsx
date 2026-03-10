@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 import {
   Header,
@@ -225,6 +226,8 @@ class App extends Component {
 
     const visibleContacts = this.getFilteredContacts();
 
+    const notify = () => toast('Wow so easy !');
+
     return (
       <>
         <Header />
@@ -301,6 +304,17 @@ class App extends Component {
             <AboutAppModal closeModal={this.closeModal} />
           </Modal>
         )}
+
+        <ToastContainer
+          position="top-right"
+          autoClose={5000} // Время закрытия уведомления в мс
+          hideProgressBar={false}
+          newestOnTop={true}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="dark"
+        />
       </>
     );
   }
