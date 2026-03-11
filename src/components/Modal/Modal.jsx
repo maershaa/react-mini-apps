@@ -1,39 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+
 import { Modal_Backdrop, Modal_Content } from '@/components/Modal/Modal.styled';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 const modalRoot = document.getElementById('modal-root');
 
-class Modal extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
-  }
+const Modal = props => {
+  const { closeModal, children } = props;
 
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
-  }
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    // Очистка после размонтирования (Для этого, возвращаем из useEffect функцию очистки. Это аналог componentWillUnmount.
+    // Здесь можно снимать обработчики событий, останавливать таймеры и отменять HTTP-запросы.)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
-  handleKeyDown = evt => {
+  const handleKeyDown = evt => {
     if (evt.code === 'Escape') {
-      this.props.closeModal();
+      closeModal();
     }
   };
 
-  handleBackdropClick = evt => {
+  const handleBackdropClick = evt => {
     if (evt.target === evt.currentTarget) {
-      this.props.closeModal();
+      closeModal();
     }
   };
-  render() {
-    return createPortal(
-      <Modal_Backdrop onClick={this.handleBackdropClick}>
-        <Modal_Content>{this.props.children}</Modal_Content>
-      </Modal_Backdrop>,
-      modalRoot
-    );
-  }
-}
+
+  return createPortal(
+    <Modal_Backdrop onClick={handleBackdropClick}>
+      <Modal_Content>{children}</Modal_Content>
+    </Modal_Backdrop>,
+    modalRoot
+  );
+};
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,

@@ -1,40 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { GalleryItem } from './ImageGalleryItem.styled';
 import PropTypes from 'prop-types';
 
-class ImageGalleryItem extends Component {
-  render() {
-    const {
-      tags,
-      previewURL,
-      previewWidth,
-      previewHeight,
-      views,
-      downloads,
-      likes,
-    } = this.props.photo;
-    return (
-      <GalleryItem onClick={this.props.onClick}>
-        <img
-          src={previewURL}
-          width={previewWidth}
-          height={previewHeight}
-          alt={tags}
-          loading="lazy"
-        />
-        <p>
-          Views: <span>{views}</span>
-        </p>
-        <p>
-          Downloads: <span>{downloads}</span>
-        </p>{' '}
-        <p>
-          Likes: <span>{likes}</span>
-        </p>
-      </GalleryItem>
-    );
-  }
-}
+const ImageGalleryItem = ({ photo, onClick }) => {
+  const {
+    tags,
+    previewURL,
+    previewWidth,
+    previewHeight,
+    views,
+    downloads,
+    likes,
+  } = photo;
+  return (
+    <GalleryItem onClick={onClick}>
+      <img
+        src={previewURL}
+        width={previewWidth}
+        height={previewHeight}
+        alt={tags}
+        loading="lazy"
+      />
+      <p>
+        Views: <span>{views}</span>
+      </p>
+      <p>
+        Downloads: <span>{downloads}</span>
+      </p>
+      <p>
+        Likes: <span>{likes}</span>
+      </p>
+    </GalleryItem>
+  );
+};
 
 ImageGalleryItem.propTypes = {
   photo: PropTypes.shape({

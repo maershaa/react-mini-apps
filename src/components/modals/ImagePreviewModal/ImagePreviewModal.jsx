@@ -1,33 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-class ImagePreviewModal extends Component {
-  render() {
-    const { closeModal, modalGalleryData } = this.props;
-    return (
-      <>
-        <div className="modal-header">
-          <button
-            type="button"
-            className="modal-close-btn"
-            aria-label="Close modal"
-            onClick={closeModal}
-          >
-            ×
-          </button>
-        </div>
-        <div className="modal-body">
-          <img
-            src={modalGalleryData.webformatURL}
-            width={modalGalleryData.webformatWidth}
-            height={modalGalleryData.webformatHeight}
-            alt={modalGalleryData.tags}
-            loading="lazy"
-          />
-        </div>
-      </>
-    );
-  }
-}
+
+const ImagePreviewModal = props => {
+  const { closeModal, modalGalleryData } = props;
+  return (
+    <>
+      <div className="modal-header">
+        <button
+          type="button"
+          className="modal-close-btn"
+          aria-label="Close modal"
+          onClick={closeModal}
+        >
+          ×
+        </button>
+      </div>
+      <div className="modal-body">
+        <img
+          src={modalGalleryData.webformatURL}
+          width={modalGalleryData.webformatWidth}
+          height={modalGalleryData.webformatHeight}
+          alt={modalGalleryData.tags}
+          loading="lazy"
+        />
+      </div>
+    </>
+  );
+};
 
 ImagePreviewModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
